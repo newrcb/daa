@@ -1,13 +1,7 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <unordered_map>
-#include <unordered_set>
+#include <bits/stdc++.h>
 using namespace std;
-// BFS Function
 void bfs(char start, unordered_map<char, vector<char>>& graph) {
-    unordered_map<char, bool> visited; // To track visited nodes
+    unordered_map<char, bool> visited;
     queue<char> q;
     q.push(start);
     visited[start] = true;
@@ -15,7 +9,6 @@ void bfs(char start, unordered_map<char, vector<char>>& graph) {
         char current = q.front();
         q.pop();
         cout << current << " ";
-
         for (char neighbor : graph[current]) {
             if (!visited[neighbor]) {
                 visited[neighbor] = true;
@@ -25,11 +18,9 @@ void bfs(char start, unordered_map<char, vector<char>>& graph) {
     }
     cout << endl;
 }
-// DFS Function
 void dfs(char start, unordered_map<char, vector<char>>& graph, unordered_map<char, bool>& visited) {
     visited[start] = true;
     cout << start << " ";
-
     for (char neighbor : graph[start]) {
         if (!visited[neighbor]) {
             dfs(neighbor, graph, visited);
@@ -39,23 +30,20 @@ void dfs(char start, unordered_map<char, vector<char>>& graph, unordered_map<cha
 int main() {
     unordered_map<char, vector<char>> graph;
     int edges;
-    cout << "Enter the number of edges: ";
+    cout << "Enter the no.of edges: ";
     cin >> edges;
-    cout << "Enter the edges (e.g., A B for an edge between A and B):" << endl;
+    cout << "Enter the edges :" << endl;
     for (int i = 0; i < edges; ++i) {
         char u, v;
         cin >> u >> v;
-        // Add the edge to the graph (undirected graph)
         graph[u].push_back(v);
         graph[v].push_back(u);
     }
     char startNode;
     cout << "Enter the starting node: ";
     cin >> startNode;
-    // Perform BFS
     cout << "BFS from node " << startNode << ": ";
-    bfs(startNode, graph);
-    // Perform DFS
+    bfs(startNode, graph);                                    
     cout << "DFS from node " << startNode << ": ";
     unordered_map<char, bool> visited;
     dfs(startNode, graph, visited);
