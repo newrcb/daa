@@ -1,16 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
-const int INF = 1e9; // A large number to represent infinity
-
-// Function to implement Floyd's Algorithm
+const int INF = 1e9;
 void floydWarshall(vector<vector<int>>& graph, int n) {
-    // Distance matrix (initialized to the input graph)
     vector<vector<int>> dist = graph;
-
-    // Update distances by considering intermediate vertices
     for (int k = 0; k < n; k++) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -20,8 +12,6 @@ void floydWarshall(vector<vector<int>>& graph, int n) {
             }
         }
     }
-
-    // Print the shortest distance matrix
     cout << "Shortest distances between every pair of vertices:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -34,12 +24,10 @@ void floydWarshall(vector<vector<int>>& graph, int n) {
         cout << endl;
     }
 }
-
 int main() {
     int n;
     cout << "Enter the number of vertices: ";
     cin >> n;
-
     vector<vector<int>> graph(n, vector<int>(n));
     cout << "Enter the adjacency matrix (use " << INF << " for no direct edge):\n";
     for (int i = 0; i < n; i++) {
@@ -47,8 +35,6 @@ int main() {
             cin >> graph[i][j];
         }
     }
-
     floydWarshall(graph, n);
-
     return 0;
 }
